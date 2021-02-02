@@ -29,7 +29,7 @@ public class UserController {
         file=new File("infoOfUsers");
         mapper=new ObjectMapper();
           try (FileWriter fileWriter=new FileWriter(file,true)) {
-             fileWriter.write(mapper.writeValueAsString(newUs));
+             fileWriter.write(mapper.writeValueAsString(newUs)+"\n");
           }catch (IOException ex){
                 System.out.println("Error: controller_write");
           }

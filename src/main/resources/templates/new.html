@@ -3,19 +3,99 @@
 <head>
     <title>Form submit for user</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+
+        BODY {
+            background-image: url('https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80');
+            background-size: 1600px;
+        }
+        .forms{ opacity: 0.4}
+        .titles{color: aliceblue}
+        .surname{color: aliceblue}
+        .name{color: aliceblue}
+        .patronymic{color: aliceblue}
+        .age{color: aliceblue}
+        .salary{color: aliceblue}
+        .email{color: aliceblue}
+        .work{color: aliceblue}
+    </style>
+
 </head>
 <body>
-<h1>Form</h1>
-<form action="#" th:action="@{/user}" th:object="${newUser}" method="POST">
-    <p>Id: <input type="text" th:field="*{id}"/></p>
-    <p>Surname: <input type="text" th:field="*{surname}"/></p>
-    <p>Name: <input type="text" th:field="*{name}"/></p>
-    <p>Patronymic: <input type="text" th:field="*{patronymic}"/></p>
-    <p>Age: <input type="text" th:field="*{age}"/></p>
-    <p>Salary: <input type="text" th:field="*{salary}"/></p>
-    <p>Email: <input type="text" th:field="*{email}"/></p>
-    <p>Work address: <input type="text" th:field="*{workAddress}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+<h1 class="titles">Form</h1>
+<form action="#" th:action="@{/user}" th:object="${newUser}" method="POST" style="background-color: gray" class="forms">
+
+    <table>
+        <tr>
+            <td class="surname">Surname:</td>
+            <!-- <p>Id: <input type="text" th:field="*{id}"/></p> -->
+
+            <td><input type="text"
+                       placeholder="Ivanov"
+                       th:field="*{surname}"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="name">Name:</td>
+            <td><input type="text"
+                       placeholder="Ivan"
+                       th:field="*{name}"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class=patronymic>Patronymic:</td>
+            <td><input type="text"
+                       placeholder="Ivanovich"
+                       th:field="*{patronymic}"
+                       maxlength="50"
+                       required pattern="^[А-Я][а-я-]+"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="age">Age:</td>
+            <td><input type="text"
+                       th:field="*{age}"
+                       min="18" max="65"
+                       required pattern="[1-9]{2}" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="salary">Salary:</td>
+            <td><input type="text"
+                       th:field="*{salary}"
+                       required pattern="[1-9.]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="email">Email:</td>
+            <td><input type="text"
+                       placeholder="ivanov@mail.ru"
+                       th:field="*{email}"
+                       required pattern="\s+@[a-z]+.[a-z]+" autofocus/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="work">Work address:</td>
+            <td><input type="text"
+                       placeholder="г.Нижний Новгород,р-он.Московский,ул.Страж Революции,д/к 20"
+                       th:field="*{workAddress}"/>
+            </td>
+        </tr>
+
+        <td class="submit"><input type="submit" value="Submit"/></td>
+        <td class="reset"><input type="reset" value="Reset"/></td>
+    </table>
+
 </form>
 </body>
 </html>
