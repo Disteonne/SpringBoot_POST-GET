@@ -71,7 +71,7 @@
             <td class="salary">Salary:</td>
             <td><input type="text"
                        th:field="*{salary}"
-                       required pattern="[1-9.]+" autofocus/>
+                       required pattern="[0-9.]+" autofocus/>
             </td>
         </tr>
 
@@ -80,7 +80,7 @@
             <td><input type="text"
                        placeholder="ivanov@mail.ru"
                        th:field="*{email}"
-                       required pattern="\s+@[a-z]+.[a-z]+" autofocus/>
+                       required pattern="[a-z0-9]{5,200}@[a-z0-9]{3,20}.[a-z]{3}" autofocus/>
             </td>
         </tr>
 
