@@ -23,7 +23,7 @@
 </head>
 <body>
 <h1 class="titles">Form</h1>
-<form action="#" th:action="@{/user}" th:object="${newUser}" method="POST" style="background-color: gray" class="forms" id="form1">
+<form th:action="@{/user}" th:object="${newUser}" method="POST" style="background-color: gray" class="forms">
 
     <table>
         <tr>
@@ -96,11 +96,10 @@
         <td class="reset"><input type="reset" value="Reset"/></td>
     </table>
 </form>
-
-<form class="forms" action="/user/upload" style="background-color: gray" id="form2">
+<form class="forms" th:action="@{/user/upload}" style="background-color: gray" method="post" enctype="multipart/form-data">
     <div style="color: white">
-        Файл для загрузки данных:<input type="file" name="File"><br />
-        <input type="submit" name="Upload" value="Upload" onmouseover="change">
+        Файл для загрузки данных:<input type="file" name="file"><br />
+        <input type="submit" name="Upload" value="Upload">
     </div>
 </form>
 </body>

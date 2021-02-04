@@ -65,6 +65,7 @@ public class UserController {
     public String fileIsEmpty(){
         return "fileIsEmpty";
     }
+
     @PostMapping("/user/upload")
     public RedirectView uploadFile(@RequestParam("file") MultipartFile multipartFile){
         if(!multipartFile.isEmpty()){
@@ -79,7 +80,5 @@ public class UserController {
         }else {
             return new RedirectView("/fileIsEmpty");
         }
-
     }
-
 }

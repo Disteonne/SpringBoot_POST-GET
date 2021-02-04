@@ -16,5 +16,4 @@ public class User {
     private double salary;
     private String email;
     private String workAddress;
-
 }
