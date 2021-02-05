@@ -9,3 +9,4 @@
 {"id":1,"surname":"Тимофеев","name":"Евгений","patronymic":"Викторович","age":21,"salary":10000.0,"email":"dianarazmikovna@yandex.ruc","workAddress":"Moscow,Red-square"}
 {"id":1,"surname":"Дятел","name":"Диана","patronymic":"Араввова","age":21,"salary":0.0,"email":"dianaazmikovna@yandex.rur","workAddress":"Moscow,Red-square"}
 {"id":1,"surname":"Дятел","name":"Диана","patronymic":"Размиковна","age":21,"salary":0.0,"email":"dianarazmikovna@yandex.rur","workAddress":"Moscow,Red-square"}
+{"id":1,"surname":"Дятел","name":"Диана","patronymic":"Размиковна","age":21,"salary":500000.0,"email":"diana@yandex.rur","workAddress":"Moscow,Univ"}

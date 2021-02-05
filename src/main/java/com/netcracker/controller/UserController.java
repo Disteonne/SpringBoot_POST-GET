@@ -24,10 +24,12 @@ public class UserController {
     private UserService userService;
 
     private final ObjectMapper mapper = new ObjectMapper();
+    private User user=new User();
 
     @GetMapping("/user")
     public String read(Model model) {
-            model.addAttribute("newUser", new User());
+            model.addAttribute("newUser", user);
+
             return "newUser";
     }
 
@@ -68,17 +70,39 @@ public class UserController {
 
     @PostMapping("/user/upload")
     public RedirectView uploadFile(@RequestParam("file") MultipartFile multipartFile){
+        File file=new File(multipartFile.getName()+"_upload");
         if(!multipartFile.isEmpty()){
             try(BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(
-                    new FileOutputStream(new File("File_upload.txt")))) {
-                byte[] file=multipartFile.getBytes();
-                bufferedOutputStream.write(file);
+                    new FileOutputStream(file))) {
+                byte[] getFile=multipartFile.getBytes();
+                bufferedOutputStream.write(getFile);
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try(BufferedReader reader=new BufferedReader(new FileReader(file));
+            ) {
+                //BufferedReader reader= Files.newBufferedReader(Paths.get(multipartFile.getName()+"_upload.txt"));
+                String info=reader.readLine();
+                String kek="hy";
+                returnNewUserWithInfo(info);
+            }catch (IOException e){
                 e.printStackTrace();
             }
             return  new RedirectView("/user");
         }else {
             return new RedirectView("/fileIsEmpty");
         }
+    }
+
+    private void returnNewUserWithInfo(String info){
+        String[] information =info.split("=");//считаем,что инфа в файле задана целой строкой и данные разделены =
+        user.setSurname(information[0]);
+        user.setName(information[1]);
+        user.setPatronymic(information[2]);
+        user.setAge(Integer.parseInt(information[3]));
+        user.setSalary(Double.parseDouble(information[4]));
+        user.setEmail(information[5]);
+        user.setWorkAddress(information[6]);
     }
 }
