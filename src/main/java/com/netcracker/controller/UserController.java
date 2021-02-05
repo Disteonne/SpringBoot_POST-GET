@@ -1,21 +1,30 @@
 package com.netcracker.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netcracker.model.MailObject;
 import com.netcracker.model.SearchUser;
 import com.netcracker.model.User;
+import com.netcracker.service.EmailServer;
 import com.netcracker.service.UserService;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpProtocolParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.*;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -23,29 +32,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private final ObjectMapper mapper = new ObjectMapper();
-    private User user=new User();
+    @Autowired
+    private EmailServer emailServer;
+
+    private User user = new User();
+
 
     @GetMapping("/user")
     public String read(Model model) {
-            model.addAttribute("newUser", user);
-
-            return "newUser";
+        model.addAttribute("newUser", user);
+        return "newUser";
     }
 
     @PostMapping("/user")
     public String write(@ModelAttribute User newUser, Model model) {
-
-            newUser = userService.addUser(newUser);
-            File file = new File("infoOfUsers");
-            try (FileWriter fileWriter = new FileWriter(file, true)) {
-                fileWriter.write(mapper.writeValueAsString(newUser) + "\n");
-            } catch (IOException ex) {
-                System.out.println("Error: controller_write");
-            }
-            model.addAttribute("addUser", newUser);
-            return "resultAddNewUser";
+        newUser = userService.addUser(newUser);
+        model.addAttribute("addUser", newUser);
+        userService.clear(user);
+        return "resultAddNewUser";
     }
+
 
     @GetMapping("/user/search")
     public String searchUser(Model model) {
@@ -64,45 +70,33 @@ public class UserController {
     }
 
     @GetMapping("/fileIsEmpty")
-    public String fileIsEmpty(){
+    public String fileIsEmpty() {
         return "fileIsEmpty";
     }
 
     @PostMapping("/user/upload")
-    public RedirectView uploadFile(@RequestParam("file") MultipartFile multipartFile){
-        File file=new File(multipartFile.getName()+"_upload");
-        if(!multipartFile.isEmpty()){
-            try(BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(
-                    new FileOutputStream(file))) {
-                byte[] getFile=multipartFile.getBytes();
-                bufferedOutputStream.write(getFile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public RedirectView uploadFile(@RequestParam("file") MultipartFile multipartFile) {
+        boolean saved = userService.uploadFile(multipartFile, user);
+        return saved ? new RedirectView("/user"):new RedirectView("/fileIsEmpty");
+    }
 
-            try(BufferedReader reader=new BufferedReader(new FileReader(file));
-            ) {
-                //BufferedReader reader= Files.newBufferedReader(Paths.get(multipartFile.getName()+"_upload.txt"));
-                String info=reader.readLine();
-                String kek="hy";
-                returnNewUserWithInfo(info);
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-            return  new RedirectView("/user");
-        }else {
-            return new RedirectView("/fileIsEmpty");
+    @PostMapping("/user/search/sendMail")
+    public RedirectView sendMail(@RequestParam("to") String to,
+            @RequestParam("subject") String subject,@RequestParam("text") String text,Model model){
+            emailServer.sendMessage(to,subject,text);
+            return new RedirectView("/user/search");
+    }
+
+    @GetMapping("/agent")
+    public String userAgent(Model model){
+        model.addAttribute("agent", new MailObject());
+        return "agent";
+    }
+
+    @PostMapping("/agent")
+    public String resultAgent(HttpServletRequest request,@ModelAttribute MailObject mailObject, Model model){
+        mailObject.setTo(request.getHeader("User-Agent")+"     "+new Date().toString());
+        model.addAttribute("kek",mailObject);
+        return "agentResult";
         }
-    }
-
-    private void returnNewUserWithInfo(String info){
-        String[] information =info.split("=");//считаем,что инфа в файле задана целой строкой и данные разделены =
-        user.setSurname(information[0]);
-        user.setName(information[1]);
-        user.setPatronymic(information[2]);
-        user.setAge(Integer.parseInt(information[3]));
-        user.setSalary(Double.parseDouble(information[4]));
-        user.setEmail(information[5]);
-        user.setWorkAddress(information[6]);
-    }
 }

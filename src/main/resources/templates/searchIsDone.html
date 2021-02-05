@@ -29,8 +29,17 @@
         <td th:text="${user.email}"></td>
     </tr>
     </tbody>
+
+    <form class="forms" th:action="@{/user/search/sendMail}" style="background-color: gray" method="post" enctype="multipart/form-data">
+        <div style="color: white">
+            Отправить письмо почту:<br />
+            <input type="text" name="to"/><br />
+            <input type="text" name="subject"><br/>
+            <input type="text" name="text"><br />
+            <input type="submit" name="send mail" th:action="@{/user/search/sendMail}">
+        </div>
+    </form>
 </table>
-<p><a href="/user">Добавить</a></p>
 </body>
 </html>
 

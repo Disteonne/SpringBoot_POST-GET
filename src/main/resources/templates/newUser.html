@@ -92,8 +92,8 @@
             </td>
         </tr>
 
-        <td class="submit"><input type="submit" value="Submit"/></td>
-        <td class="reset"><input type="reset" value="Reset"/></td>
+        <td class="submit" th:action="@{/user}"><input type="submit" value="Submit"/></td>
+        <td class="reset" th:action="@{/user}"><input type="reset" value="Reset"/></td>
     </table>
 </form>
 <form class="forms" th:action="@{/user/upload}" style="background-color: gray" method="post" enctype="multipart/form-data">

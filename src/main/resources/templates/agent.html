@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form class="forms" th:action="@{/agent}" th:object="${agent}" style="background-color: gray" method="post" enctype="multipart/form-data">
+    <input type="text" name="to" th:field="*{to}"/>
+</form>
+</body>
+</html>

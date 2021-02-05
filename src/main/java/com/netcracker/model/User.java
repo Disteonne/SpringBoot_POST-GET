@@ -16,4 +16,10 @@ public class User {
     private double salary;
     private String email;
     private String workAddress;
+
+    @Override
+    public String toString() {
+        return id +"="+surname + "="+ name + "="+ patronymic +
+                "=" +age +"="+ salary +"="+ email + "="+workAddress;
+    }
 }
