@@ -1,13 +1,10 @@
 package com.netcracker.controller;
 
-import com.netcracker.model.MailObject;
+import com.netcracker.model.UserAgent;
 import com.netcracker.model.SearchUser;
 import com.netcracker.model.User;
 import com.netcracker.service.EmailServer;
 import com.netcracker.service.UserService;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpProtocolParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.http.HttpClient;
-import java.net.http.HttpHeaders;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -36,6 +25,8 @@ public class UserController {
     private EmailServer emailServer;
 
     private User user = new User();
+    private UserAgent userAgent=new UserAgent();
+    private List<User> users = new ArrayList<>();
 
 
     @GetMapping("/user")
@@ -59,14 +50,28 @@ public class UserController {
         return "search";
     }
 
-    @PostMapping("/user/search")
-    public String searchUserGet(@ModelAttribute SearchUser searchUser, Model model) {
-        List<User> users = userService.find(searchUser);
-        if (users.isEmpty()) {
-            return "userNotFound";
-        }
+    @GetMapping("/user/searchIsDone")
+    public String searchUserIsDone(Model model) {
         model.addAttribute("users", users);
+        model.addAttribute("userAgent",userAgent);
         return "searchIsDone";
+    }
+    @GetMapping("/user/notFound")
+    public String searchUserNotFound() {
+        return "userNotFound";
+    }
+
+
+    @PostMapping("/user/search")
+    public RedirectView searchUserGet(@ModelAttribute SearchUser searchUser, HttpServletRequest servletRequest) {
+        users.clear();
+        users = userService.find(searchUser);
+        userAgent.setBrowserInfo(servletRequest.getHeader("User-Agent"));
+        userAgent.setDate(new Date().toString());
+        if (users.isEmpty()) {
+            return new RedirectView("/user/notFound");
+        }
+        return new RedirectView("/user/searchIsDone");
     }
 
     @GetMapping("/fileIsEmpty")
@@ -86,17 +91,4 @@ public class UserController {
             emailServer.sendMessage(to,subject,text);
             return new RedirectView("/user/search");
     }
-
-    @GetMapping("/agent")
-    public String userAgent(Model model){
-        model.addAttribute("agent", new MailObject());
-        return "agent";
-    }
-
-    @PostMapping("/agent")
-    public String resultAgent(HttpServletRequest request,@ModelAttribute MailObject mailObject, Model model){
-        mailObject.setTo(request.getHeader("User-Agent")+"     "+new Date().toString());
-        model.addAttribute("kek",mailObject);
-        return "agentResult";
-        }
 }

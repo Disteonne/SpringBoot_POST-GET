@@ -3,11 +3,74 @@
 <head>
     <title>Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css" >
+
+        TD,TH{
+            padding: 8px;
+        }
+        BODY {
+            background-image: url('https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80');
+            background-size: 1600px;
+        }
+        .forms{ opacity: 0.6 ; align-items: center}
+        .form1{ width: 300px ; height: 80px ; opacity: 0.6 ; align-content: center}
+    </style>
 </head>
 <body>
-<h1>Result</h1>
-<p th:text="'id: ' + ${addUser.getId()}" />
-<p th:text="'Name: ' + ${addUser.getName()}" />
-<a href="/user">Submit another message</a>
+<form th:align="center" style="background-color: white" class="form1">
+    <h1 align="center" style="color: #000;">Пользователь добавлен!</h1>
+</form>
+<br>
+<br>
+<br>
+<form style="background-color: gray" class="forms">
+<table align="center" style="background-color: beige"  >
+    <caption style="color: white">Информация</caption>
+    <tbody>
+    <tr>
+        <td><h4>Номер</h4></td>
+        <td><h4>Фамилия</h4></td>
+        <td><h4>Имя</h4></td>
+        <td><h4>Отчество</h4></td>
+        <td><h4>Возраст</h4></td>
+        <td><h4>Зароботная плата, руб.</h4></td>
+        <td><h4>Почта</h4></td>
+        <td><h4>Адрес</h4></td>
+    </tr>
+    <tr>
+        <td>
+            <p th:text="${addUser.getId()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getSurname()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getName()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getPatronymic()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getAge()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getSalary()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getEmail()}"/>
+        </td>
+        <td>
+            <p th:text="${addUser.getWorkAddress()}"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</form>
+<!--
+<p align="center" th:text="'id: ' + ${addUser.getId()}" />
+<p align="center" th:text="'Name: ' + ${addUser.getName()}" /> -->
+<form style="background-color: gray" class="forms" action="/user">
+    <input type="submit" value="Назад" name="Назад" align="center"/>
+</form>
 </body>
 </html>

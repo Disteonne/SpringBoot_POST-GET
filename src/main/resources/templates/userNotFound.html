@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Form Submission</title>
+    <title>Not found</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        BODY {
+            background-image: url('https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80');
+            background-size: 1600px;
+        }
+    </style>
 </head>
 <body>
-<h1>Пользователь не найден</h1>
-
-<a href="/user/search">Поиск</a>
+<h1 style="color: white">Пользователь не найден</h1>
+<a th:size="25" href="/user/search" style="color: white">Вернуться к поиску</a>
 </body>
 </html>

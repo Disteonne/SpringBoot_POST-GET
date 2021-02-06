@@ -6,7 +6,7 @@ import com.netcracker.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
+
 
 import java.io.*;
 import java.util.List;
@@ -18,8 +18,9 @@ public class UserService {
     private UserDAO userDAO;
 
     public User addUser(User user) {
-         userDAO.writeFile(user);
-         return userDAO.add(user);
+        User newUser=userDAO.add(user);
+         userDAO.writeFile(newUser);
+         return newUser;
     }
 
     public List<User> find(SearchUser searchUser) {

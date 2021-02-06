@@ -9,5 +9,4 @@ public class SearchUser {
 
     private String surname;
     private String name;
-
 }

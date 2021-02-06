@@ -5,41 +5,96 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
 
+        TD,TH{
+            padding: 8px;
+        }
+
         BODY {
             background-image: url('https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80');
             background-size: 1600px;
         }
-        .titles{color: aliceblue}
+
+        .titles {
+            color: aliceblue
+        }
+
+        .mailForm {
+            align-items: center
+        }
+
+        .forms {
+            opacity: 0.7
+        }
+
+        .kek {
+            background-color: gray;
+        }
 
     </style>
 
 </head>
-<body>
-<h1 class="titles">Результат поиска</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.email}"></td>
-    </tr>
-    </tbody>
 
-    <form class="forms" th:action="@{/user/search/sendMail}" style="background-color: gray" method="post" enctype="multipart/form-data">
-        <div style="color: white">
-            Отправить письмо почту:<br />
-            <input type="text" name="to"/><br />
-            <input type="text" name="subject"><br/>
-            <input type="text" name="text"><br />
-            <input type="submit" name="send mail" th:action="@{/user/search/sendMail}">
+<body>
+<h1 class="titles" align="center">Результат поиска</h1>
+<form th:action="@{/user/searchIsDone}" th:object="${users}" method="get">
+    <table align="center" style="background-color: beige">
+        <tbody>
+        <tr>
+            <td><h4>Фамилия</h4></td>
+            <td><h4>Имя</h4></td>
+            <td><h4>Отчество</h4></td>
+            <td><h4>Возраст</h4></td>
+            <td><h4>Почта</h4></td>
+            <td><h4>Рабочий адрес</h4></td>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getSurname()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getPatronymic()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getWorkAddress()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<form th:align="center" th:action="@{/user/searchIsDone}" th:object="${userAgent}" style="opacity: 70%" class="kek"
+      method="get">
+    <p th:align="center" style="color: white" th:text="${userAgent.getBrowserInfo()}"/>
+    <p th:align="center" style="color: white" th:text="${userAgent.getDate()}"/>
+</form>
+
+<form class="forms" th:align="center" th:action="@{/user/search/sendMail}" style="background-color: gray" method="post"
+      enctype="multipart/form-data">
+    <div style="color: white">
+        <div style="color: white" class="mailForm">
+            Отправить письмо почту:<br/>
+            <table th:align="center">
+                <tdbody>
+                    <tr>
+                        <td>Почта получателя</td>
+                        <td><input type="text" name="to"/></td>
+                    </tr>
+                    <tr>
+                        <td>Тема сообщения:</td>
+                        <td><input type="text" name="subject"></td>
+                    </tr>
+                    <tr>
+                        <td>Текс сообщения:</td>
+                        <td><input type="text" name="text"></td>
+                    </tr>
+                    <tr>
+                        <input type="submit" name="Отправить" value="Отправить" th:action="@{/user/search/sendMail}">
+                    </tr>
+
+                </tdbody>
+            </table>
         </div>
-    </form>
-</table>
+    </div>
+</form>
+
+
 </body>
 </html>
 

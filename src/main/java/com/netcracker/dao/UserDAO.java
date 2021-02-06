@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 public class UserDAO {
 
-    private final List<User> users = new ArrayList<>();
-    private int seqId = 0;
+    private final List<User> allUsers = getAllUsers();
+    private  int seqId=getLastId();
 
     private File dbFile(){
         return new File("infoOfUsers.txt");
@@ -19,8 +19,31 @@ public class UserDAO {
 
     public User add(User user) {
         user.setId(++seqId);
-        users.add(user);
+        //allUsers.add(user);
         return user;
+    }
+    private List<User> getAllUsers(){
+        List<User> allUser=new ArrayList<>();
+        try(BufferedReader bufferedReader=new BufferedReader(new FileReader(dbFile()))) {
+            String userInfo;
+            while ((userInfo=bufferedReader.readLine())!=null && userInfo!=""){
+                User readUser=new User();
+                String[] userField=userInfo.split("=");
+                readUser.setId(Integer.parseInt(userField[0]));
+                readUser.setSurname(userField[1]);
+                readUser.setName(userField[2]);
+                readUser.setPatronymic(userField[3]);
+                readUser.setAge(Integer.parseInt(userField[4]));
+                readUser.setSalary(Double.parseDouble(userField[5]));
+                readUser.setEmail(userField[6]);
+                readUser.setWorkAddress(userField[7]);
+                allUser.add(readUser);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return allUser;
     }
 
     public void writeFile(User user){
@@ -33,26 +56,16 @@ public class UserDAO {
 
     public List<User> getUsers(String surname, String name) {
         List<User> newListUsers = new ArrayList<>();
-        try(BufferedReader bufferedReader=new BufferedReader(new FileReader(dbFile()))) {
-            String userInfo;
-            while (!(userInfo=bufferedReader.readLine()).equals("")){
-                User readUser=new User();
-                String[] userField=userInfo.split("=");
-                readUser.setId(Integer.parseInt(userField[0]));
-                readUser.setSurname(userField[1]);
-                readUser.setName(userField[2]);
-                readUser.setPatronymic(userField[3]);
-                readUser.setAge(Integer.parseInt(userField[4]));
-                readUser.setSalary(Double.parseDouble(userField[5]));
-                readUser.setEmail(userField[6]);
-                readUser.setWorkAddress(userField[7]);
-                if(readUser.getName().equals(name) && readUser.getSurname().equals(surname)){
-                    newListUsers.add(readUser);
-                }
+        for (User user: allUsers
+             ) {
+            if (user.getName().equals(name) && user.getSurname().equals(surname)) {
+                newListUsers.add(user);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return newListUsers;
+    }
+
+    private int getLastId(){
+        return allUsers.size()==0 ? 0 : allUsers.get(allUsers.size()-1).getId();
     }
 }

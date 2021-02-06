@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Form submit for user</title>
+    <title>Search user</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
 
@@ -9,20 +9,15 @@
             background-image: url('https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80');
             background-size: 1600px;
         }
-        .forms{ opacity: 0.4}
+        .forms{ opacity: 0.6}
         .titles{color: aliceblue}
         .surname{color: aliceblue}
         .name{color: aliceblue}
-        .patronymic{color: aliceblue}
-        .age{color: aliceblue}
-        .salary{color: aliceblue}
-        .email{color: aliceblue}
-        .work{color: aliceblue}
     </style>
 
 </head>
 <body>
-<h1 class="titles">Form</h1>
+<h1 class="titles">Поиск пользователя</h1>
 <form action="#" th:action="@{/user/search}" th:object="${searchUser}" method="POST" style="background-color: gray" class="forms">
 
     <table>
@@ -53,6 +48,8 @@
         <td class="submit"><input type="submit" value="Search"/></td>
 
     </table>
+    <br>
+    <a th:size="25" href="/user" style="color: white">Добавление нового пользователя</a>
 
 </form>
 </body>
