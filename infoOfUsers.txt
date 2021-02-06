@@ -1,18 +1,3 @@
-1=Тимофеев=Евген=Викторович=23=5009900.0=qqqvict@yandex.rur=Moscow,Univ
-2=Тимофеев=Евген=Викторович=23=5009900.0=pppvict@yandex.rur=Moscow,Univ
-3=Тимофеев=Евген=Викторович=23=5009900.0=lllvict@yandex.rur=Moscow,Univ
-4=Тимофеев=Евген=Викторович=23=5009900.0=aaavict@yandex.rur=Moscow,Univ
-5=Тимофеев=Евген=Викторович=23=5009900.0=jjjvict@yandex.rur=Moscow,Univ
-6=Тимофеев=Евген=Викторович=23=5009900.0=fffvict@yandex.rur=Moscow,Univ
-7=Тимофеев=Евген=Викторович=23=5009900.0=qqqqvict@yandex.rur=Moscow,Univ
-8=Тимофеев=Евген=Викторович=23=5009900.0=fffffvict@yandex.rur=Moscow,Univ
-9=Тимофеев=Евген=Викторович=23=5009900.0=jjjjjvict@yandex.rur=Moscow,Univ
-10=Тимофеев=Евген=Викторович=23=5009900.0=aaaaaavict@yandex.rur=Moscow,Univ
-11=Тимофеев=Евген=Викторович=23=5009900.0=ddddvict@yandex.rur=Moscow,Univ
-12=Тимофеев=Евген=Викторович=23=5009900.0=ofofvict@yandex.rur=Moscow,Univ
-13=Тимофеев=Евген=Викторович=23=5009900.0=aaavict@yandex.rur=Moscow,Univ
-14=Тимофеев=Евген=Викторович=23=5009900.0=fkfkfkvict@yandex.rur=Moscow,Univ
-15=Тимофеев=Евген=Викторович=23=5009900.0=ppppvict@yandex.rur=Moscow,Univ
-16=Тимофеев=Евген=Викторович=23=5009900.0=llllllvict@yandex.rur=Moscow,Univ
-17=Миронова=Екатерина=Ивановна=24=37000.0=mironova@yandex.ru=г.Санкт-Петербург,Александровский переулок
-18=Макаров=Дмитрий=Андреевич=41=50900.0=victAnD@gmail.com=г.Москва,г.Московский,ул.Киевская,д.1
+1=Миронова=Екатерина=Ивановна=24=37000.0=mironova@yandex.ru=г.Санкт-Петербург,Александровский переулок
+2=Макаров=Дмитрий=Андреевич=41=50900.0=victAnD@gmail.com=г.Москва,г.Московский,ул.Киевская,д.1
+3=Шардина=Оксана=Олеговна=39=43500.0=oksanaO@mail.ru=г.Санкт-Петербург,Александровский переулок

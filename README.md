@@ -43,7 +43,7 @@ Consider each option.
 
     - user is found
 
-![markdown_logo](https://sun9-7.userapi.com/impg/XI_sXfGewIvbA0tTcmK3nmN9qmPRTndUMYkmtg/lR0TrnI-ChY.jpg?size=1920x930&quality=96&proxy=1&sign=774a49e66c20fb64b103597b9131f085&type=album)
+![markdown_logo](https://sun9-35.userapi.com/impg/nFFw8B_6BMq3TzMC656a9vjEOT5mkgS4Q3Uuwg/IV0YoBv1oHI.jpg?size=1920x932&quality=96&proxy=1&sign=89ccd1a4f7057b7a3fed86a44e0a6f74&type=album)
 
     - user not found
 
