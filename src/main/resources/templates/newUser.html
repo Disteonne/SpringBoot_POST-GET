@@ -80,7 +80,7 @@
             <td><input type="text"
                        placeholder="ivanov@mail.ru"
                        th:field="*{email}"
-                       required pattern="[a-z0-9]{5,200}@[a-z0-9]{3,20}.[a-z]{3}" autofocus/>
+                       required pattern="[A-Za-z0-9]{5,200}@[a-z0-9]{3,20}.[a-z]{2,3}" autofocus/>
             </td>
         </tr>
 
@@ -92,15 +92,15 @@
             </td>
         </tr>
 
-        <td class="submit" th:action="@{/user}"><input type="submit" value="Submit"/></td>
-        <td class="reset" th:action="@{/user}"><input type="reset" value="Reset"/></td>
+        <td class="submit" th:action="@{/user}"><input type="submit" value="Отправить"/></td>
+        <td class="reset" th:action="@{/user}"><input type="reset" value="Сбросить"/></td>
 
     </table>
 </form>
 <form class="forms" th:action="@{/user/upload}" style="background-color: gray" method="post" enctype="multipart/form-data">
     <div style="color: white">
-        Файл для загрузки данных:<input type="file" name="file"><br />
-        <input type="submit" name="Upload" value="Upload">
+        Файл для загрузки данных:<input type="file" name="file" value="Выберите файл"><br />
+        <input type="submit" name="Upload" value="Загрузить">
         <br><br>
         <a th:size="25" href="/user/search" style="color: white">Поиск пользователя</a>
     </div>
