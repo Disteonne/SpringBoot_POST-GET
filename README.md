@@ -43,8 +43,8 @@ Consider each option.
 
     - user is found
 
-![markdown_logo](https://sun9-47.userapi.com/impg/FM0dZ18HNWYK15aguVO450H6blPTWB6X7qXZQQ/BHLuwSetZ5I.jpg?size=1920x925&quality=96&proxy=1&sign=8326028a42f30b5c1d5e93db821ff108&type=album)
+![markdown_logo](https://sun9-7.userapi.com/impg/XI_sXfGewIvbA0tTcmK3nmN9qmPRTndUMYkmtg/lR0TrnI-ChY.jpg?size=1920x930&quality=96&proxy=1&sign=774a49e66c20fb64b103597b9131f085&type=album)
 
     - user not found
 
-![markdown_logo](https://sun9-7.userapi.com/impg/XI_sXfGewIvbA0tTcmK3nmN9qmPRTndUMYkmtg/lR0TrnI-ChY.jpg?size=1920x930&quality=96&proxy=1&sign=774a49e66c20fb64b103597b9131f085&type=album)
+![markdown_logo](https://sun9-64.userapi.com/impg/O-aczbhAAucL4MWrqAnqTFLWinbGiSwx0UVtWQ/BUPJmbST0wI.jpg?size=1920x930&quality=96&proxy=1&sign=49c811d2f8cdd0ffa920bc97fc0371fa&type=album)
